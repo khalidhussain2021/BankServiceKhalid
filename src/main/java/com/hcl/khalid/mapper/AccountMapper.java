@@ -1,17 +1,27 @@
 package com.hcl.khalid.mapper;
 
-
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import com.hcl.khalid.dto.AccountDto;
 import com.hcl.khalid.entities.Account;
+import com.hcl.khalid.entities.AccountType;
+import com.hcl.khalid.entities.Customer;
 
-@Mapper(componentModel = "spring")
-public interface AccountMapper {
-	AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
-
-    Account toEntity(AccountDto dto);
-
-    AccountDto toDTO(Account entity);
+@Component
+public class AccountMapper {
+	
+    // Convert Entity to DTO
+    public static AccountDto toDto(Account entity) {
+        if (entity == null) {
+            return null;
+        }
+        AccountDto dto = new AccountDto();
+        dto.setAccountType(entity.getAccountType().name());
+        dto.setAccountNumber(entity.getAccountNumber());
+        // Avoid circular dependency
+        if (entity.getCustomer() != null) {
+            dto.setCustomer(null);
+        }
+        return dto;
+    }
 }

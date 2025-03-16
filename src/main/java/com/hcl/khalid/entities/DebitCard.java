@@ -30,7 +30,7 @@ public class DebitCard {
     @Column(nullable = false)
     private LocalDate expiryDate;
 
-    @OneToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+//    @OneToOne
+//    @JoinColumn(name = "account_id", nullable = false)
+//    private Account account;
 }

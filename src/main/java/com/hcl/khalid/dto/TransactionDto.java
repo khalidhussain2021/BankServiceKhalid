@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionDto {
-	private Long transactionId;
+
     private Double amount;
     private LocalDateTime transactionDate;
     private String transactionType; // DEBIT or CREDIT

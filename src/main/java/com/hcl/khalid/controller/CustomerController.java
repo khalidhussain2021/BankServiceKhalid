@@ -3,7 +3,6 @@ package com.hcl.khalid.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,9 +55,10 @@ public class CustomerController {
         throw new CustomerNotFoundException("Customer is not present");
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) throws CustomerNotFoundException {
+    @DeleteMapping("del/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long id) throws CustomerNotFoundException {
         customerService.deleteCustomer(id);
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        String msg="delete a resouce from server: " +id; 
+        return new ResponseEntity<>(msg,HttpStatus.BAD_REQUEST);
     }
 }

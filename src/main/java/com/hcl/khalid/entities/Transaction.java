@@ -33,7 +33,7 @@ public class Transaction {
     @Column(nullable = false)
     private String transactionType; // DEBIT or CREDIT
 
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+//    @ManyToOne
+//    @JoinColumn(name = "account_id", nullable = false)
+//    private Account account;
 }

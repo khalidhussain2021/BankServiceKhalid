@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -34,7 +34,7 @@ public class Customer {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Account> accounts = new ArrayList<>();
 
 }

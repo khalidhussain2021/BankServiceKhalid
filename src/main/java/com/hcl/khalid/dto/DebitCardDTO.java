@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DebitCardDTO {
-	private Long cardId;
+	
     private String cardNumber;
     private String expiryDate;
     private double balance;
