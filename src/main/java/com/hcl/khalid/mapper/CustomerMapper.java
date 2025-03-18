@@ -13,7 +13,7 @@ import com.hcl.khalid.entities.Customer;
 @Component
 public class CustomerMapper {
 	// Convert DTO to Entity
-	public static Customer toEntity(CustomerDto dto) {
+	public Customer toEntity(CustomerDto dto) {
         Customer customer = new Customer();
         customer.setEmail(dto.getEmail());
         customer.setName(dto.getName());

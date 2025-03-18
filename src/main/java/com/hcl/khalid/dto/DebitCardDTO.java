@@ -1,17 +1,16 @@
 package com.hcl.khalid.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class DebitCardDTO {
 	
     private String cardNumber;
-    private String expiryDate;
-    private double balance;
-    private AccountDto account;
-
+    private LocalDate expiryDate;
 }

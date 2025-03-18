@@ -2,6 +2,7 @@ package com.hcl.khalid.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DebitCard {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -30,7 +31,7 @@ public class DebitCard {
     @Column(nullable = false)
     private LocalDate expiryDate;
 
-//    @OneToOne
-//    @JoinColumn(name = "account_id", nullable = false)
-//    private Account account;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

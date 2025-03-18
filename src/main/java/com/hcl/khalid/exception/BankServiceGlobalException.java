@@ -13,4 +13,8 @@ public class BankServiceGlobalException {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 	
+	@ExceptionHandler(CustomerAlreadyExistException.class)
+	public ResponseEntity<String> customerExistException(CustomerAlreadyExistException ex) {
+		return new ResponseEntity<>(ex.getMessage(),HttpStatus.ALREADY_REPORTED);
+	}
 }

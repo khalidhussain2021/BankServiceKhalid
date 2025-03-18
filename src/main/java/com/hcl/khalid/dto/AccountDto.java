@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class AccountDto {
     private String accountType;
     private String accountNumber;
-    private CustomerDto customer;
+    private DebitCardDTO debitCardDTO;
 }
