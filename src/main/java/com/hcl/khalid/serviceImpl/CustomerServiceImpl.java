@@ -53,6 +53,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Transactional
 	@Override
 	public Customer createCustomerWithAccountAndDebitCard(CustomerDto customerDTO) throws CustomerAlreadyExistException {
+		logger.info("Inside customer created with Debitcard()");
 		if(customerRepository.existsByEmail(customerDTO.getEmail())) {
 			throw new CustomerAlreadyExistException("Customer alredady exist with "+customerDTO.getEmail());
 		}
@@ -60,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService{
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
-        
+        customerRepository.save(customer);
         // Process Accounts
         List<Account> accounts = new ArrayList<>();
         for (AccountDto accountDTO : customerDTO.getAccounts()) {
@@ -86,12 +87,13 @@ public class CustomerServiceImpl implements CustomerService{
             account = accountRepository.save(account);
         }
         customer.setAccounts(accounts); 
-        customerRepository.save(customer);
+        
         return customer;
 	}
 	
 	@Override
 	public CustomerDto getCustomerById(Long id) throws CustomerNotFoundException {
+		logger.info("Inside get customer By Id()");
 		Optional<Customer> customer = customerRepository.findById(id);
 		if(customer.isEmpty()) {
 			throw new CustomerNotFoundException("Customer is not present please Register..");
@@ -100,6 +102,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	@Override
 	public List<CustomerDto> getAllCustomers() {
+		logger.info("Inside customer all created with Debitcard()");
 		return customerRepository.findAll()
 				.stream()
 				.map(customerMapper::toDto)
@@ -108,7 +111,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public CustomerDto updateCustomer(Long id, CustomerDto customerDTO) throws CustomerNotFoundException {
 		 Optional<Customer> existingCustomer = customerRepository.findById(id);
-	                
+		 logger.info("Inside customer updated with Debitcard()");       
 		      Customer customer;
 	        if (existingCustomer.isPresent()) {
 	            // Existing Customer Found, update only non-null values
@@ -135,6 +138,7 @@ public class CustomerServiceImpl implements CustomerService{
 	                    customer.getAccounts().add(account);
 	                });
 	            }
+	            
 	        }else {
 	        	customer = new Customer();
 	            customer.setEmail(customerDTO.getEmail());

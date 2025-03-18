@@ -28,6 +28,7 @@ public class CustomerMapper {
                 return account;
             }).collect(Collectors.toList());
         customer.setAccounts(accounts);
+        
         return customer;
     }
 
